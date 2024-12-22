@@ -2,14 +2,14 @@
 
 import { useState } from "react";
 import axios from "axios";
-
+import config from "@/config/config";
 export default function Home() {
   const [name, setName] = useState(""); // 查询的姓名
   const [age, setAge] = useState(null); // 查询结果：年龄
 
   const executeQuery = async () => {
     try {
-      const response = await axios.get("/api/get_age", {
+      const response = await axios.get(`${config.backendUrl}/api/get_age`, {
         params: { name }, // 将 name 作为查询参数传递
       });
       setAge(response.data.age); // 假设后端返回 { age: xx }
